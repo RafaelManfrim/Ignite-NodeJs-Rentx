@@ -18,10 +18,8 @@ specificationsRoutes.post("/", (req, res) => {
   return res.status(201).send();
 });
 
-specificationsRoutes.get("/", (req, res) => {
-  const all = specificationsRepository.list();
-
-  return res.status(200).json(all);
-});
+specificationsRoutes.get("/", (req, res) =>
+  res.json(specificationsRepository.list())
+);
 
 export { specificationsRoutes };

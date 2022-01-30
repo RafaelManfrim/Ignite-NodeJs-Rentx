@@ -5,21 +5,17 @@ import { CreateSpecificationService } from "../modules/cars/services/CreateSpeci
 
 const specificationsRoutes = Router();
 
-const specificationsRepository = new SpecificationsRepository();
+const specsRepository = new SpecificationsRepository();
 
 specificationsRoutes.post("/", (req, res) => {
   const { name, description } = req.body;
 
-  const createSpecificationService = new CreateSpecificationService(
-    specificationsRepository
-  );
-  createSpecificationService.execute({ name, description });
+  const createSpecService = new CreateSpecificationService(specsRepository);
+  createSpecService.execute({ name, description });
 
   return res.status(201).send();
 });
 
-specificationsRoutes.get("/", (req, res) =>
-  res.json(specificationsRepository.list())
-);
+specificationsRoutes.get("/", (req, res) => res.json(specsRepository.list()));
 
 export { specificationsRoutes };

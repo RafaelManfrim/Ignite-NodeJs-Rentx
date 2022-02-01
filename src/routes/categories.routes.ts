@@ -3,10 +3,9 @@ import multer from "multer";
 
 import { CategoriesRepository } from "../modules/cars/repositories/categories/CategoriesRepository";
 import { CreateCategoryService } from "../modules/cars/services/CreateCategoryService";
+import { ImportCategoryService } from "../modules/cars/services/ImportCategoriesService";
 
-const upload = multer({
-  dest: "./tmp",
-});
+const upload = multer({ dest: "./tmp" });
 
 const categoriesRoutes = Router();
 
@@ -25,7 +24,10 @@ categoriesRoutes.post("/", (req, res) => {
 
 categoriesRoutes.post("/import/", upload.single("file"), (req, res) => {
   const { file } = req;
-  console.log(file);
+
+  const importCategoryService = new ImportCategoryService(categoriesRepository);
+  importCategoryService.execute({ file });
+
   return res.send();
 });
 

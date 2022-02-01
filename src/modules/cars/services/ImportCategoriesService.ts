@@ -14,7 +14,7 @@ class ImportCategoryService {
   execute({ file }: IRequest) {
     const stream = fs.createReadStream(file.path);
 
-    const parseFile = parse();
+    const parseFile = parse({ delimiter: "/" });
 
     stream.pipe(parseFile);
 

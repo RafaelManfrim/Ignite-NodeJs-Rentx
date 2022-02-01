@@ -18,13 +18,17 @@ class ImportCategoryService {
 
     stream.pipe(parseFile);
 
-    parseFile.on("data", async (line) => {
-      const [name, description] = line;
-      const createCategoryService = new CreateCategoryService(
-        this.categoriesRepository
-      );
-      createCategoryService.execute({ name, description });
-    });
+    parseFile
+      .on("data", async (line) => {
+        const [name, description] = line;
+        const createCategoryService = new CreateCategoryService(
+          this.categoriesRepository
+        );
+        createCategoryService.execute({ name, description });
+      })
+      .on("end", () => {
+        fs.promises.unlink(file.path);
+      });
   }
 }
 

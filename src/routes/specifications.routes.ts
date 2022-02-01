@@ -10,8 +10,14 @@ const specsRepository = new SpecificationsRepository();
 specificationsRoutes.post("/", (req, res) => {
   const { name, description } = req.body;
 
-  const createSpecService = new CreateSpecificationService(specsRepository);
-  createSpecService.execute({ name, description });
+  try {
+    const createSpecService = new CreateSpecificationService(specsRepository);
+    createSpecService.execute({ name, description });
+  } catch (err) {
+    if (err.message === "Specification already exists") {
+      return res.status(400).json({ message: err.message });
+    }
+  }
 
   return res.status(201).send();
 });

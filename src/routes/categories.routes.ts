@@ -16,8 +16,16 @@ categoriesRoutes.get("/", (req, res) => res.json(categoriesRepository.list()));
 categoriesRoutes.post("/", (req, res) => {
   const { name, description } = req.body;
 
-  const createCategoryService = new CreateCategoryService(categoriesRepository);
-  createCategoryService.execute({ name, description });
+  try {
+    const createCategoryService = new CreateCategoryService(
+      categoriesRepository
+    );
+    createCategoryService.execute({ name, description });
+  } catch (err) {
+    if (err.message === "Category already exists") {
+      return res.status(400).json({ message: err.message });
+    }
+  }
 
   return res.status(201).send();
 });

@@ -1,7 +1,7 @@
 version: '3.7'
 
 services:
-  databa_ignite:
+  database_ignite:
     image: postgres
     container_name: database_ignite
     restart: always

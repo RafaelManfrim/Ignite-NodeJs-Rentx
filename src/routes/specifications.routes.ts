@@ -1,14 +1,18 @@
 import { Router } from "express";
 import { container } from "tsyringe";
 
-import { SpecificationsRepository } from "../modules/cars/repositories/specifications/SpecificationsRepository";
 import { CreateSpecificationService } from "../modules/cars/services/CreateSpecificationService";
+import { ListSpecificationsService } from "../modules/cars/services/ListSpecificationsService";
 
 const specificationsRoutes = Router();
 
-const specsRepository = () => new SpecificationsRepository();
-
-specificationsRoutes.get("/", (req, res) => res.json(specsRepository().list()));
+specificationsRoutes.get("/", async (req, res) => {
+  const listSpecificationsService = container.resolve(
+    ListSpecificationsService
+  );
+  const specifications = await listSpecificationsService.execute();
+  return res.json(specifications);
+});
 
 specificationsRoutes.post("/", (req, res) => {
   const { name, description } = req.body;

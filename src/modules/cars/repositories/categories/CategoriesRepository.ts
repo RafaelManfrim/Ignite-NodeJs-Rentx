@@ -1,3 +1,5 @@
+import { getRepository, Repository } from "typeorm";
+
 import { Category } from "../../model/Category";
 import {
   ICategoriesRepository,
@@ -5,30 +7,25 @@ import {
 } from "./ICategoriesRepository";
 
 class CategoriesRepository implements ICategoriesRepository {
-  private categories: Category[];
+  private repository: Repository<Category>;
 
   constructor() {
-    this.categories = [];
+    this.repository = getRepository(Category);
   }
 
-  create({ name, description }: ICreateCategoryDTO) {
-    const category = new Category();
+  async create({ name, description }: ICreateCategoryDTO) {
+    const category = this.repository.create({ name, description });
 
-    Object.assign(category, {
-      name,
-      description,
-      created_at: new Date(),
-    });
-
-    this.categories.push(category);
+    await this.repository.save(category);
   }
 
-  list() {
-    return this.categories;
+  async list() {
+    const categories = await this.repository.find();
+    return categories;
   }
 
-  findByName(name: string) {
-    const category = this.categories.find((category) => category.name === name);
+  async findByName(name: string) {
+    const category = await this.repository.findOne({ name });
     return category;
   }
 }

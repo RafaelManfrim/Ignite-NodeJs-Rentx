@@ -1,5 +1,6 @@
 import { parse } from "csv-parse";
 import fs from "fs";
+import { container, inject, injectable } from "tsyringe";
 
 import { ICategoriesRepository } from "../repositories/categories/ICategoriesRepository";
 import { CreateCategoryService } from "./CreateCategoryService";
@@ -8,10 +9,14 @@ interface IRequest {
   file: Express.Multer.File;
 }
 
+@injectable()
 class ImportCategoryService {
-  constructor(private categoriesRepository: ICategoriesRepository) {}
+  constructor(
+    @inject("CategoriesRepository")
+    private categoriesRepository: ICategoriesRepository
+  ) {}
 
-  execute({ file }: IRequest) {
+  async execute({ file }: IRequest) {
     const stream = fs.createReadStream(file.path);
 
     const parseFile = parse({ delimiter: "/" });
@@ -21,9 +26,7 @@ class ImportCategoryService {
     parseFile
       .on("data", async (line) => {
         const [name, description] = line;
-        const createCategoryService = new CreateCategoryService(
-          this.categoriesRepository
-        );
+        const createCategoryService = container.resolve(CreateCategoryService);
         createCategoryService.execute({ name, description });
       })
       .on("end", () => {

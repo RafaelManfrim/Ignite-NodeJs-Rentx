@@ -1,5 +1,6 @@
 import { Router } from "express";
 import multer from "multer";
+import { container } from "tsyringe";
 
 import { CategoriesRepository } from "../modules/cars/repositories/categories/CategoriesRepository";
 import { CreateCategoryService } from "../modules/cars/services/CreateCategoryService";
@@ -19,9 +20,7 @@ categoriesRoutes.post("/", (req, res) => {
   const { name, description } = req.body;
 
   try {
-    const createCategoryService = new CreateCategoryService(
-      categoriesRepository()
-    );
+    const createCategoryService = container.resolve(CreateCategoryService);
     createCategoryService.execute({ name, description });
     return res.status(201).send();
   } catch (err) {

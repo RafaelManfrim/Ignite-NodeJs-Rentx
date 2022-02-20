@@ -16,12 +16,12 @@ categoriesRoutes.get("/", async (req, res) => {
   return res.json(categories);
 });
 
-categoriesRoutes.post("/", (req, res) => {
+categoriesRoutes.post("/", async (req, res) => {
   const { name, description } = req.body;
 
   try {
     const createCategoryService = container.resolve(CreateCategoryService);
-    createCategoryService.execute({ name, description });
+    await createCategoryService.execute({ name, description });
     return res.status(201).send();
   } catch (err) {
     if (err.message === "Category already exists") {
@@ -32,11 +32,11 @@ categoriesRoutes.post("/", (req, res) => {
   return res.send();
 });
 
-categoriesRoutes.post("/import/", upload.single("file"), (req, res) => {
+categoriesRoutes.post("/import/", upload.single("file"), async (req, res) => {
   const { file } = req;
 
   const importCategoryService = container.resolve(ImportCategoryService);
-  importCategoryService.execute({ file });
+  await importCategoryService.execute({ file });
 
   return res.status(201).send();
 });

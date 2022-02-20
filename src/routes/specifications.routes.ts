@@ -14,12 +14,12 @@ specificationsRoutes.get("/", async (req, res) => {
   return res.json(specifications);
 });
 
-specificationsRoutes.post("/", (req, res) => {
+specificationsRoutes.post("/", async (req, res) => {
   const { name, description } = req.body;
 
   try {
     const createSpecService = container.resolve(CreateSpecificationService);
-    createSpecService.execute({ name, description });
+    await createSpecService.execute({ name, description });
   } catch (err) {
     if (err.message === "Specification already exists") {
       return res.status(400).json({ message: err.message });

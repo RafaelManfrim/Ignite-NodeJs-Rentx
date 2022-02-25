@@ -1,4 +1,4 @@
-import { response, Router } from "express";
+import { Router } from "express";
 import { container } from "tsyringe";
 
 import { AuthenticateUserService } from "../modules/accounts/services/AuthenticateUserService";

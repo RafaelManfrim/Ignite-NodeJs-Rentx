@@ -28,11 +28,15 @@ export async function ensureAuthenticated(
     ) as IPayload;
 
     const usersRepository = new UsersRepository();
-    const user = usersRepository.findById(sub);
+    const user = await usersRepository.findById(sub);
 
     if (!user) {
       throw new AppError("User does not exists!");
     }
+
+    req.user = {
+      id: user.id,
+    };
 
     next();
   } catch {

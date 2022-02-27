@@ -2,9 +2,9 @@ import { Router } from "express";
 import multer from "multer";
 import { container } from "tsyringe";
 
-import { CreateCategoryService } from "../modules/cars/services/CreateCategoryService";
-import { ImportCategoryService } from "../modules/cars/services/ImportCategoriesService";
-import { ListCategoriesService } from "../modules/cars/services/ListCategoriesService";
+import { CreateCategoryService } from "../modules/cars/services/categories/CreateCategoryService";
+import { ImportCategoryService } from "../modules/cars/services/categories/ImportCategoriesService";
+import { ListCategoriesService } from "../modules/cars/services/categories/ListCategoriesService";
 
 const upload = multer({ dest: "./tmp" });
 

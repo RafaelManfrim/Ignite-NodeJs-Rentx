@@ -2,7 +2,7 @@ import { parse } from "csv-parse";
 import fs from "fs";
 import { container, inject, injectable } from "tsyringe";
 
-import { ICategoriesRepository } from "../repositories/categories/ICategoriesRepository";
+import { ICategoriesRepository } from "../../repositories/categories/ICategoriesRepository";
 import { CreateCategoryService } from "./CreateCategoryService";
 
 interface IRequest {

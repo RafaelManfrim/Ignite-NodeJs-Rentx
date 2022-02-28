@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe";
 
-import { ICategoriesRepository } from "../repositories/categories/ICategoriesRepository";
+import { ICategoriesRepository } from "../../repositories/categories/ICategoriesRepository";
 
 @injectable()
 class ListCategoriesService {

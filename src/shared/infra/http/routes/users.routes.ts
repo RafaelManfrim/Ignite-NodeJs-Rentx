@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { container } from "tsyringe";
 
-import { CreateUserService } from "../modules/accounts/services/user/CreateUserService";
+import { CreateUserService } from "../../../../modules/accounts/services/user/CreateUserService";
 
 const usersRoutes = Router();
 

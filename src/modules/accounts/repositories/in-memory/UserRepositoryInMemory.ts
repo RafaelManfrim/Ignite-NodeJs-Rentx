@@ -1,4 +1,4 @@
-import { User } from "../../model/User";
+import { User } from "../../infra/typeorm/model/User";
 import { ICreateUserDTO, IUsersRepository } from "../IUsersRepository";
 
 export class UserRepositoryInMemory implements IUsersRepository {

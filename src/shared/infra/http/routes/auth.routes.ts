@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { container } from "tsyringe";
 
-import { AuthenticateUserService } from "../modules/accounts/services/user/AuthenticateUserService";
+import { AuthenticateUserService } from "../../../../modules/accounts/services/user/AuthenticateUserService";
 
 const authRoutes = Router();
 

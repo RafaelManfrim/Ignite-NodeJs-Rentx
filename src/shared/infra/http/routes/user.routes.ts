@@ -2,8 +2,8 @@ import { Router } from "express";
 import multer from "multer";
 import { container } from "tsyringe";
 
-import uploadConfig from "../config/upload";
-import { UpdateUserAvatarService } from "../modules/accounts/services/user/UpdateUserAvatarService";
+import uploadConfig from "../../../../config/upload";
+import { UpdateUserAvatarService } from "../../../../modules/accounts/services/user/UpdateUserAvatarService";
 
 const uploadAvatar = multer(uploadConfig.upload("./tmp/avatar"));
 

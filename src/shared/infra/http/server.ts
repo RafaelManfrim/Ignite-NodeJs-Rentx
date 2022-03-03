@@ -5,9 +5,11 @@ import "reflect-metadata";
 
 import swaggerFile from "../../../swagger.json";
 import { AppError } from "../../errors/AppError";
+import startConnection from "../typeorm";
 import { router } from "./routes";
-import "../typeorm";
 import "../../container";
+
+startConnection();
 
 const app = express();
 

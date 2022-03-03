@@ -1,3 +1,28 @@
+# Cadastro de Categoria
+
+**Requisitos Funcionais**
+- [x] Deve ser possível cadastrar uma nova categoria.
+- [x] Deve ser possível importar categorias de um arquivo csv.
+
+**Regra de negócio**
+- [x] Não deve ser possível cadastrar uma categoria com mesmo nome.
+
+# Cadastro de Especificação
+
+**Requisitos Funcionais**
+- [x] Deve ser possível cadastrar uma nova especificação
+
+**Regra de negócio**
+- [x] Não deve ser possível cadastrar uma especificação com mesmo nome.
+
+# Cadastro de Usuário
+
+**Requisitos Funcionais**
+- [x] Deve ser possível cadastrar um novo usuário.
+
+**Regra de negócio**
+- [x] Não deve ser possível cadastrar um usuário com mesmo email.
+
 # Cadastro de carro
 
 **Requisitos Funcionais**
@@ -23,7 +48,7 @@
 
 **Requisitos Funcionais**
 - [ ] Deve ser possível cadastrar uma especificação para um carro.
-- [ ] Deve ser possível listar todas as especificações.
+- [x] Deve ser possível listar todas as especificações.
 - [ ] Deve ser possível listar todos os carros.
 
 **Regra de negócio**

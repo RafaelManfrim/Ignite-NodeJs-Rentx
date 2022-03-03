@@ -4,9 +4,8 @@
 - [] Deve ser possível cadastrar um novo carro.
 
 **Regra de negócio**
-- [] Não deve ser possível cadastrar um carro com uma placa já cadastrada.
-- [] Não deve ser possível alterar a placa de um carro já cadastrado.
-- [] O carro deve ser cadastrado com disponibilidade por padrão.
+- [x] Não deve ser possível cadastrar um carro com uma placa já cadastrada.
+- [x] O carro deve ser cadastrado com disponibilidade por padrão.
 - [] O usuário responsável pelo cadastro deve ser administrador.
 
 # Listagem de carros

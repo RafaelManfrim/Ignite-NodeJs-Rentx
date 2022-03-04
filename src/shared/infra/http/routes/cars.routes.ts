@@ -2,11 +2,13 @@ import { Router } from "express";
 import { container } from "tsyringe";
 
 import { CreateCarService } from "../../../../modules/cars/services/cars/CreateCarService";
+import { ListAvailableCarsService } from "../../../../modules/cars/services/cars/ListAvailableCarsService";
 import { ensureAdmin } from "../middlewares/ensureAdmin";
+import { ensureAuthenticated } from "../middlewares/ensureAuthenticated";
 
 const carRoutes = Router();
 
-carRoutes.post("/", ensureAdmin, async (req, res) => {
+carRoutes.post("/", ensureAuthenticated, ensureAdmin, async (req, res) => {
   const carFromRequest: {
     name: string;
     description: string;
@@ -22,6 +24,19 @@ carRoutes.post("/", ensureAdmin, async (req, res) => {
   const car = await createCarService.execute(carFromRequest);
 
   return res.json(car);
+});
+
+carRoutes.get("/available/", async (req, res) => {
+  const { brand, name, category_id } = req.query;
+  const listAvailableCarsService = container.resolve(ListAvailableCarsService);
+
+  const cars = await listAvailableCarsService.execute({
+    brand: brand as string,
+    name: name as string,
+    category_id: category_id as string,
+  });
+
+  return res.json(cars);
 });
 
 export { carRoutes };

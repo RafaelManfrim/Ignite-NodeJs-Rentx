@@ -17,4 +17,22 @@ export class CarsRepositoryInMemory implements ICarsRepository {
   async findByLicensePlate(license_plate: string) {
     return this.cars.find((car) => car.license_plate === license_plate);
   }
+
+  async findAvailable(category_id: string, brand: string, name: string) {
+    return this.cars.filter((car) => {
+      if (car.available === true) {
+        if (brand) {
+          return car.brand === brand;
+        }
+        if (name) {
+          return car.name === name;
+        }
+        if (category_id) {
+          return car.category_id === category_id;
+        }
+        return car;
+      }
+      return null;
+    });
+  }
 }

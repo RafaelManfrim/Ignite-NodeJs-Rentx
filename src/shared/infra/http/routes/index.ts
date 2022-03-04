@@ -14,9 +14,9 @@ router.use("/session", authRoutes);
 
 router.use("/users", usersRoutes);
 
-router.use(ensureAuthenticated);
-
 router.use("/cars", carRoutes);
+
+router.use(ensureAuthenticated);
 
 router.use("/user", userRoutes);
 

@@ -5,6 +5,7 @@ import { container } from "tsyringe";
 import { CreateCategoryService } from "../../../../modules/cars/services/categories/CreateCategoryService";
 import { ImportCategoryService } from "../../../../modules/cars/services/categories/ImportCategoriesService";
 import { ListCategoriesService } from "../../../../modules/cars/services/categories/ListCategoriesService";
+import { ensureAdmin } from "../middlewares/ensureAdmin";
 
 const upload = multer({ dest: "./tmp" });
 
@@ -16,7 +17,7 @@ categoriesRoutes.get("/", async (req, res) => {
   return res.json(categories);
 });
 
-categoriesRoutes.post("/", async (req, res) => {
+categoriesRoutes.post("/", ensureAdmin, async (req, res) => {
   const { name, description } = req.body;
 
   try {
@@ -32,13 +33,18 @@ categoriesRoutes.post("/", async (req, res) => {
   return res.send();
 });
 
-categoriesRoutes.post("/import/", upload.single("file"), async (req, res) => {
-  const { file } = req;
+categoriesRoutes.post(
+  "/import/",
+  ensureAdmin,
+  upload.single("file"),
+  async (req, res) => {
+    const { file } = req;
 
-  const importCategoryService = container.resolve(ImportCategoryService);
-  await importCategoryService.execute({ file });
+    const importCategoryService = container.resolve(ImportCategoryService);
+    await importCategoryService.execute({ file });
 
-  return res.status(201).send();
-});
+    return res.status(201).send();
+  }
+);
 
 export { categoriesRoutes };

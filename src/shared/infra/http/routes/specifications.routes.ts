@@ -3,6 +3,7 @@ import { container } from "tsyringe";
 
 import { CreateSpecificationService } from "../../../../modules/cars/services/specifications/CreateSpecificationService";
 import { ListSpecificationsService } from "../../../../modules/cars/services/specifications/ListSpecificationsService";
+import { ensureAdmin } from "../middlewares/ensureAdmin";
 
 const specificationsRoutes = Router();
 
@@ -14,7 +15,7 @@ specificationsRoutes.get("/", async (req, res) => {
   return res.json(specifications);
 });
 
-specificationsRoutes.post("/", async (req, res) => {
+specificationsRoutes.post("/", ensureAdmin, async (req, res) => {
   const { name, description } = req.body;
 
   try {

@@ -26,4 +26,12 @@ export class SpecificationsRepositoryInMemory
 
     this.specifications.push(specification);
   }
+
+  async findByIds(ids: string[]) {
+    const specifications = this.specifications.filter((specification) =>
+      ids.includes(specification.id)
+    );
+
+    return specifications;
+  }
 }

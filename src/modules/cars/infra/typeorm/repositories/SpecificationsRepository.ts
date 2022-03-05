@@ -17,6 +17,8 @@ class SpecificationsRepository implements ISpecificationsRepository {
     const specification = this.repository.create({ name, description });
 
     await this.repository.save(specification);
+
+    return specification;
   }
 
   async list() {

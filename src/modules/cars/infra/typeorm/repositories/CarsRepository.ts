@@ -45,4 +45,9 @@ export class CarsRepository implements ICarsRepository {
 
     return cars;
   }
+
+  async findById(car_id: string) {
+    const car = this.repository.findOne({ id: car_id });
+    return car;
+  }
 }

@@ -1,13 +1,18 @@
 import { Router } from "express";
+import multer from "multer";
 import { container } from "tsyringe";
 
+import uploadConfig from "../../../../config/upload";
 import { CreateCarService } from "../../../../modules/cars/services/cars/CreateCarService";
 import { CreateCarSpecificationsService } from "../../../../modules/cars/services/cars/CreateCarSpecificationsService";
 import { ListAvailableCarsService } from "../../../../modules/cars/services/cars/ListAvailableCarsService";
+import { UploadCarImageService } from "../../../../modules/cars/services/cars/UploadCarImageService";
 import { ensureAdmin } from "../middlewares/ensureAdmin";
 import { ensureAuthenticated } from "../middlewares/ensureAuthenticated";
 
 const carRoutes = Router();
+
+const uploadCarImages = multer(uploadConfig.upload("./tmp/cars"));
 
 carRoutes.get("/available/", async (req, res) => {
   const { brand, name, category_id } = req.query;
@@ -56,5 +61,22 @@ carRoutes.post("/specifications/:car_id", async (req, res) => {
 
   return res.json(car);
 });
+
+carRoutes.post(
+  "/images/:id",
+  uploadCarImages.array("images"),
+  async (req, res) => {
+    const { id } = req.params;
+    const images = req.files as { filename: string }[];
+
+    const uploadCarImageService = container.resolve(UploadCarImageService);
+
+    const filenames = images.map((file) => file.filename);
+
+    await uploadCarImageService.execute({ car_id: id, images_name: filenames });
+
+    return res.status(201).send();
+  }
+);
 
 export { carRoutes };

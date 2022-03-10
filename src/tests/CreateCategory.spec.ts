@@ -44,4 +44,23 @@ describe("Create Category Intagration Test", () => {
 
     expect(response.statusCode).toBe(201);
   });
+
+  test("Should not be able to create a new category if name already exists", async () => {
+    const responseSession = await request(app).post("/session/").send({
+      email: "admin@rentx.com.br",
+      password: "admin",
+    });
+
+    const { token } = responseSession.body;
+
+    const response = await request(app)
+      .post("/categories/")
+      .send({
+        name: "Category SuperTest",
+        description: "Category Description SuperTest",
+      })
+      .set({ Authorization: `Bearer ${token}` });
+
+    expect(response.statusCode).toBe(400);
+  });
 });

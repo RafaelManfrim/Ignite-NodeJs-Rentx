@@ -94,3 +94,13 @@
 - [x] Caso o horário da devolução seja superior ao horário previsto de entrega, deverá ser cobrado multa proporcional aos dias de atraso.
 - [x] Caso haja multa, deverá ser somado ao total.
 - [x] O usuário deve estar logado na aplicação.
+
+# Listagem de aluguéis para usuário
+
+**Requisitos Funcionais**
+
+- [ ] Deve ser possível realizar a busca de todos os aluguéis para um usuário
+
+**Regra de Negócio**
+
+- [ ] O usuário deve estar logado na aplicação.

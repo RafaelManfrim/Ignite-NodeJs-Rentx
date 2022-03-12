@@ -49,7 +49,6 @@
 **Requisitos Funcionais**
 - [x] Deve ser possível cadastrar uma especificação para um carro.
 - [x] Deve ser possível listar todas as especificações.
-- [ ] Deve ser possível listar todos os carros.
 
 **Regra de negócio**
 - [x] Não deve ser possível cadastrar uma especificação para um carro não cadastrado.
@@ -78,3 +77,19 @@
 - [x] Não deve ser possível cadastrar um novo aluguel caso já exista um aberto para o mesmo usuário.
 - [x] Não deve ser possível cadastrar um novo aluguel caso já exista um aberto para o mesmo carro.
 - [x] O usuário deve estar logado na aplicação.
+- [ ] Ao realizar um aluguel, o status do carro deverá ser atualizado para indisponível
+
+# Devolução do carro
+
+**Requisitos Funcionais**
+
+- [ ] Deve ser possível realizar a devolução de um carro
+
+**Regra de Negócio**
+
+- [ ] Se o carro for devolvido em menos de 24h deverá ser cobrado uma diária completa.
+- [ ] Ao realizar a devolução, o carro deverá ser liberado para outro aluguel.
+- [ ] Ao realizar a devolução, o usuário deverá ser liberado para outro aluguel.
+- [ ] Ao realizar a devolução, deverá ser calculado o total do aluguel.
+- [ ] Caso o horário da devolução seja superior ao horário previsto de entrega, deverá ser cobrado multa proporcional aos dias de atraso.
+- [ ] Caso haja multa, deverá ser somado ao total.

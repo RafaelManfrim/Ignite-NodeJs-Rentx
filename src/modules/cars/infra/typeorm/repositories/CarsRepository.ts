@@ -50,4 +50,14 @@ export class CarsRepository implements ICarsRepository {
     const car = this.repository.findOne({ id: car_id });
     return car;
   }
+
+  async updateAvailable(id: string, available: boolean) {
+    await this.repository
+      .createQueryBuilder()
+      .update()
+      .set({ available })
+      .where("id = :id")
+      .setParameters({ id })
+      .execute();
+  }
 }

@@ -99,8 +99,8 @@
 
 **Requisitos Funcionais**
 
-- [ ] Deve ser possível realizar a busca de todos os aluguéis para um usuário
+- [x] Deve ser possível realizar a busca de todos os aluguéis para um usuário
 
 **Regra de Negócio**
 
-- [ ] O usuário deve estar logado na aplicação.
+- [x] O usuário deve estar logado na aplicação.

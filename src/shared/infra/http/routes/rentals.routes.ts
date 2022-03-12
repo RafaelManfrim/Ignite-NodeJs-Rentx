@@ -3,6 +3,7 @@ import { container } from "tsyringe";
 
 import { CreateRentalService } from "../../../../modules/rentals/services/CreateRentalService";
 import { DevolutionRentalService } from "../../../../modules/rentals/services/DevolutionRentalService";
+import { ListRentalsByUserService } from "../../../../modules/rentals/services/ListRentalsByUserService";
 
 const rentalRoutes = Router();
 
@@ -26,6 +27,13 @@ rentalRoutes.post("/devolution/:id", async (req, res) => {
 
   const rental = await devolutionRentalService.execute({ rental_id, user_id });
   return res.json(rental);
+});
+
+rentalRoutes.get("/user", async (req, res) => {
+  const { id } = req.user;
+  const listRentalsByUserService = container.resolve(ListRentalsByUserService);
+  const rentals = await listRentalsByUserService.execute(id);
+  return res.json(rentals);
 });
 
 export { rentalRoutes };

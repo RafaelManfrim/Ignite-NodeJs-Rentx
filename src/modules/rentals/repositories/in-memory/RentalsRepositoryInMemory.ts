@@ -30,4 +30,10 @@ export class RentalsRepositoryInMemory implements IRentalsRepository {
       (rental) => rental.user_id === user_id && !rental.end_date
     );
   }
+
+  async findById(rental_id: string) {
+    return this.rentals.find(
+      (rental) => rental.id === rental_id && !rental.end_date
+    );
+  }
 }

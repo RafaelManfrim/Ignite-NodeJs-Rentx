@@ -89,8 +89,8 @@
 
 - [x] Se o carro for devolvido em menos de 24h deverá ser cobrado uma diária completa.
 - [x] Ao realizar a devolução, o carro deverá ser liberado para outro aluguel.
-- [ ] Ao realizar a devolução, o usuário deverá ser liberado para outro aluguel.
+- [x] Ao realizar a devolução, o usuário deverá ser liberado para outro aluguel.
 - [x] Ao realizar a devolução, deverá ser calculado o total do aluguel.
 - [x] Caso o horário da devolução seja superior ao horário previsto de entrega, deverá ser cobrado multa proporcional aos dias de atraso.
 - [x] Caso haja multa, deverá ser somado ao total.
-- [ ] O usuário deve estar logado na aplicação.
+- [x] O usuário deve estar logado na aplicação.

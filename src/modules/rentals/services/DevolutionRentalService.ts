@@ -38,8 +38,8 @@ export class DevolutionRentalService {
     );
 
     const delay = this.dateProvider.compareInDays(
-      this.dateProvider.dateNow(),
-      rental.expected_return_date
+      rental.expected_return_date,
+      this.dateProvider.dateNow()
     );
 
     if (daily <= 0) {

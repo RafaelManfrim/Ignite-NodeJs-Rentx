@@ -52,7 +52,10 @@ export class RentalsRepository implements IRentalsRepository {
   }
 
   async findRentalsByUser(user_id: string) {
-    const rentals = await this.repository.find({ user_id });
+    const rentals = await this.repository.find({
+      where: { user_id },
+      relations: ["car"],
+    });
     return rentals;
   }
 }

@@ -42,9 +42,7 @@ export class RentalsRepositoryInMemory implements IRentalsRepository {
   }
 
   async findById(rental_id: string) {
-    return this.rentals.find(
-      (rental) => rental.id === rental_id && !rental.end_date
-    );
+    return this.rentals.find((rental) => rental.id === rental_id);
   }
 
   async findRentalsByUser(user_id: string) {

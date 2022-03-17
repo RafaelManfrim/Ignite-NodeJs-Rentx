@@ -6,7 +6,7 @@ import { CreateUserService } from "./CreateUserService";
 let userRepositoryInMemory: UserRepositoryInMemory;
 let createUserService: CreateUserService;
 
-describe("Authenticate user", () => {
+describe("Create user", () => {
   beforeEach(() => {
     userRepositoryInMemory = new UserRepositoryInMemory();
     createUserService = new CreateUserService(userRepositoryInMemory);
@@ -21,23 +21,27 @@ describe("Authenticate user", () => {
     };
 
     await createUserService.execute(user);
+
+    const userCreated = userRepositoryInMemory.users[0];
+
+    expect(userCreated).toHaveProperty("id");
   });
 
-  test("Shouldn't able to create an user with same email", () => {
-    expect(async () => {
-      await createUserService.execute({
-        name: "User test",
-        email: "user@test.com",
-        driver_license: "12345",
-        password: "12345",
-      });
+  test("Shouldn't able to create an user with same email", async () => {
+    await createUserService.execute({
+      name: "User test",
+      email: "user@test.com",
+      driver_license: "12345",
+      password: "12345",
+    });
 
-      await createUserService.execute({
+    await expect(
+      createUserService.execute({
         name: "User test 2",
         email: "user@test.com",
         driver_license: "12345",
         password: "12345",
-      });
-    }).rejects.toBeInstanceOf(AppError);
+      })
+    ).rejects.toEqual(new AppError("User already exists"));
   });
 });

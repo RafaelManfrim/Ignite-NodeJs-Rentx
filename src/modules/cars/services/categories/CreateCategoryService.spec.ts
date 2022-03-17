@@ -26,17 +26,17 @@ describe("Create category", () => {
     expect(categoryCreated).toHaveProperty("id");
   });
 
-  test("Shouldn't able to create a existing category", () => {
-    expect(async () => {
-      await createCategoryService.execute({
-        name: "Category test",
-        description: "Category description test",
-      });
+  test("Shouldn't able to create a existing category", async () => {
+    await createCategoryService.execute({
+      name: "Category test",
+      description: "Category description test",
+    });
 
-      await createCategoryService.execute({
+    await expect(
+      createCategoryService.execute({
         name: "Category test",
         description: "Category description test",
-      });
-    }).rejects.toBeInstanceOf(AppError);
+      })
+    ).rejects.toEqual(new AppError("Category already exists"));
   });
 });

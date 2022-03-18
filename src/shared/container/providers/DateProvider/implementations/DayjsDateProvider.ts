@@ -25,4 +25,9 @@ export class DayjsDateProvider implements IDateProvider {
     const end_date_utc = this.convertToUTC(end_date);
     return dayjs(end_date_utc).diff(start_date_utc, "days");
   }
+
+  addDays(date: Date, days: number) {
+    const date_utc = this.convertToUTC(date);
+    return dayjs(date_utc).add(days, "days").toDate();
+  }
 }

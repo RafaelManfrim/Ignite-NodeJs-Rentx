@@ -1,5 +1,4 @@
 import { compare } from "bcryptjs";
-import dayjs from "dayjs";
 import { sign } from "jsonwebtoken";
 import { inject, injectable } from "tsyringe";
 

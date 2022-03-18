@@ -10,7 +10,7 @@ import { v4 as uuidV4 } from "uuid";
 
 import { User } from "./User";
 
-@Entity()
+@Entity("users_tokens")
 export class UserTokens {
   @PrimaryColumn()
   id: string;
@@ -22,7 +22,7 @@ export class UserTokens {
   user_id: string;
 
   @ManyToOne(() => User)
-  @JoinColumn()
+  @JoinColumn({ name: "user_id" })
   user: User;
 
   @Column()

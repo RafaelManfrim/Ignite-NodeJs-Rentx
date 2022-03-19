@@ -29,6 +29,13 @@ export class UsersTokensRepository implements IUsersTokensRepository {
     return userToken;
   }
 
+  async findByToken(token: string) {
+    const usersTokens = await this.repository.findOne({
+      refresh_token: token,
+    });
+    return usersTokens;
+  }
+
   async findByUserIdAndRefreshToken(user_id: string, refresh_token: string) {
     const usersTokens = await this.repository.findOne({
       user_id,

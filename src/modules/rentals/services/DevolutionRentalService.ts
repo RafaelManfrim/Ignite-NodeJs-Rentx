@@ -7,6 +7,7 @@ import { IRentalsRepository } from "../repositories/IRentalsRepository";
 
 interface IRequest {
   rental_id: string;
+  user_id: string;
 }
 
 @injectable()
@@ -20,7 +21,7 @@ export class DevolutionRentalService {
     private dateProvider: IDateProvider
   ) {}
 
-  async execute({ rental_id }: IRequest) {
+  async execute({ rental_id, user_id }: IRequest) {
     const rental = await this.rentalsRepository.findById(rental_id);
 
     if (!rental) {

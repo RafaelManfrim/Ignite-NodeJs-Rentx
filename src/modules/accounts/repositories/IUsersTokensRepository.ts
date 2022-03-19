@@ -8,6 +8,7 @@ export interface ICreateUsersTokensDTO {
 
 export interface IUsersTokensRepository {
   create: (data: ICreateUsersTokensDTO) => Promise<UserTokens>;
+  findByToken: (token: string) => Promise<UserTokens>;
   findByUserIdAndRefreshToken: (
     user_id: string,
     refresh_token: string

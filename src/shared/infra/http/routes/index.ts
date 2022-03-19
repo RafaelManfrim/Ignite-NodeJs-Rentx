@@ -11,7 +11,7 @@ import { usersRoutes } from "./users.routes";
 
 const router = Router();
 
-router.use("/session", authRoutes);
+router.use("/", authRoutes);
 
 router.use("/users", usersRoutes);
 

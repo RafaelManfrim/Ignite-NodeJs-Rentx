@@ -3,5 +3,6 @@ export interface IDateProvider {
   convertToUTC(date: Date): string;
   compareInHours(start_date: Date, end_date: Date): number;
   compareInDays(start_date: Date, end_date: Date): number;
-  addDays(date: Date, days: number): Date;
+  addDays(days: number, date?: Date): Date;
+  addHours(hours: number, date?: Date): Date;
 }

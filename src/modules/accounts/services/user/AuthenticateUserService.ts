@@ -59,7 +59,6 @@ export class AuthenticateUserService {
     await this.usersTokensRepository.create({
       user_id: user.id,
       expires_date: this.dateProvider.addDays(
-        new Date(),
         auth.expires_in_refresh_token_days
       ),
       refresh_token,

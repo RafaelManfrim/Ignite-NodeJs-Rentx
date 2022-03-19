@@ -109,11 +109,11 @@
 
 **Requisitos Funcionais**
 
-- [ ] Deve ser possível o usuário recuperar a senha usando o e-mail
-- [ ] O usuário deve receber um e-mail com o passo a passo para a recuperação de senha
-- [ ] O usuário deve conseguir inserir uma nova senha
+- [x] Deve ser possível o usuário recuperar a senha usando o e-mail
+- [x O usuário deve receber um e-mail com o passo a passo para a recuperação de senha
+- [x O usuário deve conseguir inserir uma nova senha
 
 **Regra de Negócio**
 
-- [ ] O usuário precisa inserir uma nova senha
-- [ ] O link enviado para recuperação deve expirar em 3h
+- [x] O usuário precisa inserir uma nova senha
+- [x] O link enviado para recuperação deve expirar em 3h

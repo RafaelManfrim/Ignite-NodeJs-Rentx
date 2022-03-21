@@ -110,8 +110,8 @@
 **Requisitos Funcionais**
 
 - [x] Deve ser possível o usuário recuperar a senha usando o e-mail
-- [x O usuário deve receber um e-mail com o passo a passo para a recuperação de senha
-- [x O usuário deve conseguir inserir uma nova senha
+- [x] O usuário deve receber um e-mail com o passo a passo para a recuperação de senha
+- [x] O usuário deve conseguir inserir uma nova senha
 
 **Regra de Negócio**
 

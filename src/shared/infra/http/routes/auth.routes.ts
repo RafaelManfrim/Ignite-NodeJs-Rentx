@@ -21,9 +21,9 @@ authRoutes.post("/refresh_token", async (req, res) => {
     req.body.token || req.headers["x-access-token"] || req.query.token;
 
   const refreshTokenService = container.resolve(RefreshTokenService);
-  const refresh_token = await refreshTokenService.execute(token);
+  const tokens = await refreshTokenService.execute(token);
 
-  return res.json(refresh_token);
+  return res.json(tokens);
 });
 
 export { authRoutes };

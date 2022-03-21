@@ -22,7 +22,7 @@ describe("Create user", () => {
 
     await createUserService.execute(user);
 
-    const userCreated = userRepositoryInMemory.users[0];
+    const userCreated = await userRepositoryInMemory.findByEmail(user.email);
 
     expect(userCreated).toHaveProperty("id");
   });

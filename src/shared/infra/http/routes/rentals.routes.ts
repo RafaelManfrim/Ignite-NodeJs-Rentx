@@ -1,9 +1,9 @@
 import { Router } from "express";
 import { container } from "tsyringe";
 
-import { CreateRentalService } from "../../../../modules/rentals/services/CreateRentalService";
-import { DevolutionRentalService } from "../../../../modules/rentals/services/DevolutionRentalService";
-import { ListRentalsByUserService } from "../../../../modules/rentals/services/ListRentalsByUserService";
+import { CreateRentalService } from "../../../../modules/rentals/services/rental/CreateRentalService";
+import { DevolutionRentalService } from "../../../../modules/rentals/services/rental/DevolutionRentalService";
+import { ListRentalsByUserService } from "../../../../modules/rentals/services/rental/ListRentalsByUserService";
 
 const rentalRoutes = Router();
 

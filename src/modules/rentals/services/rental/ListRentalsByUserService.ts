@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe";
 
-import { IRentalsRepository } from "../repositories/IRentalsRepository";
+import { IRentalsRepository } from "../../repositories/IRentalsRepository";
 
 @injectable()
 export class ListRentalsByUserService {

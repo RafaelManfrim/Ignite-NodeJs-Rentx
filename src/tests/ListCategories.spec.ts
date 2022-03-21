@@ -34,8 +34,6 @@ describe("Create Category Intagration Test", () => {
 
     const { refresh_token } = responseSession.body;
 
-    console.log(refresh_token);
-
     await request(app)
       .post("/categories/")
       .send({

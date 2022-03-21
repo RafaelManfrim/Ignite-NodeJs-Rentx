@@ -32,7 +32,9 @@ describe("Create Category Intagration Test", () => {
       password: "admin",
     });
 
-    const { token } = responseSession.body;
+    const { refresh_token } = responseSession.body;
+
+    console.log(refresh_token);
 
     await request(app)
       .post("/categories/")
@@ -40,11 +42,11 @@ describe("Create Category Intagration Test", () => {
         name: "Category SuperTest",
         description: "Category Description SuperTest",
       })
-      .set({ Authorization: `Bearer ${token}` });
+      .set({ Authorization: `Bearer ${refresh_token}` });
 
     const response = await request(app)
       .get("/categories/")
-      .set({ Authorization: `Bearer ${token}` });
+      .set({ Authorization: `Bearer ${refresh_token}` });
 
     expect(response.statusCode).toBe(200);
     expect(response.body.length).toBe(1);

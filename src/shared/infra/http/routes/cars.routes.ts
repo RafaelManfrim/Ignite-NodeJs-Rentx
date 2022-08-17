@@ -12,7 +12,7 @@ import { ensureAuthenticated } from "../middlewares/ensureAuthenticated";
 
 const carRoutes = Router();
 
-const uploadCarImages = multer(uploadConfig.upload("./tmp/cars"));
+const uploadCarImages = multer(uploadConfig);
 
 carRoutes.get("/available/", async (req, res) => {
   const { brand, name, category_id } = req.query;

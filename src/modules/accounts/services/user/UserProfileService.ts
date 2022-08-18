@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe";
 
-import { User } from "../../infra/typeorm/model/User";
+import { IUserResponseDTO, UserMap } from "../../mapper/UserMap";
 import { IUsersRepository } from "../../repositories/IUsersRepository";
 
 interface IRequest {
@@ -14,10 +14,10 @@ class UserProfileService {
     private usersRepository: IUsersRepository
   ) {}
 
-  async execute({ id }: IRequest): Promise<User> {
+  async execute({ id }: IRequest): Promise<IUserResponseDTO> {
     const user = await this.usersRepository.findById(id);
 
-    return user;
+    return UserMap.toDTO(user);
   }
 }
 
